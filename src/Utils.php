@@ -2,18 +2,36 @@
 
 namespace Drupal\sshkey;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-
 /**
  * SshkeyBreakdown service.
  */
 class Utils {
 
-  private $algorithm;
-  private $key;
-  private $comment;
+  /**
+   * Algorithm.
+   *
+   * @var string
+   */
+  private string $algorithm;
 
-  private function __construct($algorithm, $key, $comment = null) {
+  /**
+   * Key.
+   *
+   * @var string
+   */
+  private string $key;
+
+  /**
+   * Comment.
+   *
+   * @var string
+   */
+  private string $comment;
+
+  /**
+   * Constructor.
+   */
+  private function __construct($algorithm, $key, $comment = NULL) {
     $this->algorithm = $algorithm;
     $this->key = $key;
     $this->comment = $comment;
@@ -23,26 +41,41 @@ class Utils {
    * Retrieves the last created node.
    */
   public static function initialize($value) {
-    list($algorithm, $key, $comment) = array_pad(explode(' ', $value, 3), 3, NULL);
+    [$algorithm, $key, $comment] = array_pad(explode(' ', $value, 3), 3, NULL);
     return new static($algorithm, $key, $comment);
   }
 
+  /**
+   * Get the key algorithm.
+   */
   public function getAlgorithm() {
     return $this->algorithm;
   }
 
+  /**
+   * Get the key.
+   */
   public function getKey() {
     return $this->key;
   }
 
+  /**
+   * Get the comment.
+   */
   public function getComment() {
     return $this->comment;
   }
 
+  /**
+   * Get the fingerprint.
+   */
   public function getFingerprintMd5() {
     return md5(base64_decode($this->key, TRUE));
   }
 
+  /**
+   * Get the fingerprint.
+   */
   public function getFingerprintSha256() {
     return base64_encode(hash('sha256', base64_decode($this->key), TRUE));
   }

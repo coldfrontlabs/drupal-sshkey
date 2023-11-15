@@ -13,7 +13,7 @@ use Drupal\sshkey\Utils;
 /**
  * Defines the 'sshkey_default' field type.
  *
- * @todo: Allow to choose fingerprint algorithm.
+ * @todo Allow to choose fingerprint algorithm.
  *
  * @FieldType(
  *   id = "sshkey_default",
@@ -45,9 +45,9 @@ class SshKeyItem extends FieldItemBase {
       '#title' => $this->t('Algorithm'),
       '#default_value' => $settings['algorithm'],
       '#options' => [
-        'ssh-rsa' => 'ssh-rsa',
-        'ssh-dss' => 'ssh-dss',
-        'ssh-ed25519' => 'ssh-ed25519',
+        'ssh-rsa' => $this->t('ssh-rsa'),
+        'ssh-dss' => $this->t('ssh-dss'),
+        'ssh-ed25519' => $this->t('ssh-ed25519'),
       ],
     ];
     return $element;
@@ -92,7 +92,7 @@ class SshKeyItem extends FieldItemBase {
     if ($property_name == 'value') {
       $property = $this->get('value')->getValue();
       $utils = Utils::initialize($property);
-      // @todo: Get an actual fingerprint.
+      // @todo Get an actual fingerprint.
       $this->writePropertyValue('fingerprint', $utils->getFingerprintMd5());
       if (!$this->get('name')->getValue()) {
         // Get comment from the key.

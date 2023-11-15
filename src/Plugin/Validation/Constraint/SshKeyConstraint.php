@@ -16,8 +16,18 @@ use Symfony\Component\Validator\Constraint;
  */
 class SshKeyConstraint extends Constraint {
 
+  /**
+   * The message that will be shown if the value is not valid.
+   *
+   * @var string
+   */
   public $message = 'This key is not valid.';
 
+  /**
+   * The algorithm in question.
+   *
+   * @var array
+   */
   public $algorithm = [];
 
   /**
@@ -33,4 +43,5 @@ class SshKeyConstraint extends Constraint {
   public function getRequiredOptions() {
     return ['algorithm'];
   }
+
 }

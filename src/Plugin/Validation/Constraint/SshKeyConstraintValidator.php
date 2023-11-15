@@ -19,7 +19,7 @@ class SshKeyConstraintValidator extends ConstraintValidator {
       $utils = Utils::initialize($value);
       $algorithm = $utils->getAlgorithm();
       $key = $utils->getKey();
-      // @todo: Validate algorithm.
+      // @todo Validate algorithm.
       if (!in_array($algorithm, array_filter($constraint->algorithm))) {
         throw new \Exception('Invalid algorithm');
       }

@@ -1,0 +1,17 @@
+view any SSH public keys:
+  title: View any SSH public keys
+view own SSH public keys:
+  title: View own SSH public keys
+edit any SSH public keys:
+  title: Edit any SSH public keys
+  restrict access: true
+edit own SSH public keys:
+  title: Edit own SSH public keys
+manage any SSH public keys:
+  title: Create and delete any SSH public keys
+  restrict access: true
+manage own SSH public keys:
+  title: Create and delete own SSH public keys
+administer SSH public keys:
+  title: Administer SSH public keys
+  restrict access: true
