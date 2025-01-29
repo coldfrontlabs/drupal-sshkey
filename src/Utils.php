@@ -31,38 +31,39 @@ class Utils {
   /**
    * Constructor.
    */
-  private function __construct($algorithm, $key, $comment = NULL) {
+  private function __construct(string $algorithm, string $key, $comment = '') {
     $this->algorithm = $algorithm;
     $this->key = $key;
-    $this->comment = $comment;
+    // @todo in change to require string once update hook exists.
+    $this->comment = strval($comment);
   }
 
   /**
    * Retrieves the last created node.
    */
   public static function initialize($value) {
-    [$algorithm, $key, $comment] = array_pad(explode(' ', $value, 3), 3, NULL);
+    [$algorithm, $key, $comment] = array_pad(explode(' ', $value, 3), 3, '');
     return new static($algorithm, $key, $comment);
   }
 
   /**
    * Get the key algorithm.
    */
-  public function getAlgorithm() {
+  public function getAlgorithm() : string {
     return $this->algorithm;
   }
 
   /**
    * Get the key.
    */
-  public function getKey() {
+  public function getKey() : string {
     return $this->key;
   }
 
   /**
    * Get the comment.
    */
-  public function getComment() {
+  public function getComment() : string {
     return $this->comment;
   }
 
